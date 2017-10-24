@@ -1,11 +1,15 @@
 #!/bin/bash
 
 tmpfile="/tmp/suncoast_deposit_2014.html"
-rm "/tmp/suncoast_deposit_2014.html"
+tmpfile2="/tmp/suncoast_deposit_2014_back.html"
+rm "$tmpfile"
+rm "$tmpfile2"
+
 clear
 
 echo "Downloading template..."
 wget "https://raw.githubusercontent.com/metalx1000/Bank-Deposit-Slips/master/suncost_credit_union/suncoast_deposit_2014.html" -O "$tmpfile"
+wget "https://raw.githubusercontent.com/metalx1000/Bank-Deposit-Slips/master/suncost_credit_union/suncoast_deposit_2014_back.html" -O "$tmpfile2"
 
 echo -n "Name: "
 read nname
@@ -39,4 +43,5 @@ sed -i "s/checkd/$checkd/" $tmpfile
 sed -i "s/dtotal/$dtotal/" $tmpfile
 sed -i "s/cashb/$cashb/" $tmpfile
 
+xdg-open $tmpfile2
 xdg-open $tmpfile
